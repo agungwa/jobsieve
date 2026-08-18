@@ -12,6 +12,10 @@ OUT=.vercel/output
 rm -rf "$OUT"
 mkdir -p "$OUT/static" "$OUT/functions/api/index.func"
 
+# Root deps are needed to bundle the API (esbuild resolves hono/drizzle/
+# postgres/openai from root node_modules). Fresh checkouts (CI) have none.
+bun install --frozen-lockfile
+
 # ── Static SPA ──────────────────────────────────────────────────────────────
 (cd web && bun install --frozen-lockfile && bun run build)
 cp -R web/dist/. "$OUT/static/"

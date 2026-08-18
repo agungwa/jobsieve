@@ -54,6 +54,10 @@ jobs:
         run: bun run db:migrate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          # config.ts validates required vars at boot; migrations never touch
+          # admin routes, so a placeholder satisfies validation in CI. The
+          # real key is only ever set in the Vercel dashboard.
+          ADMIN_API_KEY: ci-not-used
 
   deploy:
     name: Deploy to Vercel

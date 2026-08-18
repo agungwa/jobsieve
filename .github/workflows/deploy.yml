@@ -12,6 +12,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ── Manual: run ingest against prod (Actions tab → Run workflow) ──────────
+  ingest:
+    name: Run ingest (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install (backend)
+        run: bun install --frozen-lockfile
+
+      - name: Ingest jobs
+        run: bun run ingest
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ADMIN_API_KEY: ci-not-used
+          EMBEDDING_PROVIDER: cloudflare
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Embed pending rows
+        run: bun run ingest:embedding-worker
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ADMIN_API_KEY: ci-not-used
+          EMBEDDING_PROVIDER: cloudflare
+          CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
   # ── CI: typecheck + build on every PR and push ────────────────────────────
   check:
     name: Typecheck & build
@@ -39,7 +71,7 @@ jobs:
   # Runs only on pushes to master (and manual dispatch) — PRs are check-only.
   migrate:
     name: Migrate database
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push'
     needs: check
     runs-on: ubuntu-latest
     steps:
@@ -61,7 +93,7 @@ jobs:
 
   deploy:
     name: Deploy to Vercel
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'push'
     needs: [check, migrate]
     runs-on: ubuntu-latest
     steps:

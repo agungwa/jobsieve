@@ -1,0 +1,1 @@
+ALTER TABLE "companies" ADD COLUMN "hq_location" text;

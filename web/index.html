@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Jobsieve — Remote tech jobs, sifted to the ones that fit you</title>
+    <meta
+      name="description"
+      content="Jobsieve aggregates remote and tech jobs from 25+ boards worldwide. Upload your CV once and get AI-ranked matches, salary and location filters, and an AI career assistant."
+    />
+    <link rel="canonical" href="https://jobsieve.agung.click/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#5a6cff" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jobsieve" />
+    <meta property="og:title" content="Jobsieve — Remote tech jobs, matched to your CV" />
+    <meta
+      property="og:description"
+      content="25+ job boards sifted into one feed. Upload your CV and see which jobs actually fit — ranked by AI."
+    />
+    <meta property="og:url" content="https://jobsieve.agung.click/" />
+    <meta property="og:image" content="https://jobsieve.agung.click/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jobsieve — Remote tech jobs, matched to your CV" />
+    <meta
+      name="twitter:description"
+      content="25+ job boards sifted into one feed. Upload your CV and see which jobs actually fit — ranked by AI."
+    />
+    <meta name="twitter:image" content="https://jobsieve.agung.click/og-image.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Jobsieve",
+        "url": "https://jobsieve.agung.click/",
+        "description": "Remote and tech job aggregator with AI CV matching and an AI career assistant.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://jobsieve.agung.click/?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        var t = localStorage.getItem("jobsfound.theme");
+        if (t === "dark" || t === "light") document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

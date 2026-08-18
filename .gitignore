@@ -1,0 +1,33 @@
+# deps
+node_modules/
+.bun/
+
+# build
+dist/
+
+# env (keep .env.example — it is documentation, contains no secrets)
+.env
+.env*
+!.env.example
+
+# db
+*.sqlite
+*.sqlite-journal
+
+# editor
+.vscode/
+.idea/
+.DS_Store
+
+# claude code local settings
+.claude/settings.local.json
+
+# vercel project link (per-machine; CI uses secrets instead)
+.vercel/
+
+# logs
+*.log
+logs/
+
+# uploads (runtime CV cache)
+uploads/

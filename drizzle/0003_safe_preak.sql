@@ -1,0 +1,1 @@
+ALTER TABLE "cv_profiles" ALTER COLUMN "content_type" SET DATA TYPE varchar(128);

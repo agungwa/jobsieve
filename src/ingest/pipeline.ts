@@ -93,11 +93,13 @@ async function persistRecords(
       })
       .onConflictDoNothing();
 
-    // Refresh skills (delete + reinsert — small array).
-    if (normalized.skills.length > 0) {
+    // Refresh skills (delete + reinsert — small array). Dedupe first: the
+    // (job_id, skill) PK rejects duplicate matches within one insert batch.
+    const uniqueSkills = [...new Set(normalized.skills)];
+    if (uniqueSkills.length > 0) {
       await db.delete(jobSkills).where(sql`${jobSkills.jobId} = ${jobId}`);
       await db.insert(jobSkills).values(
-        normalized.skills.map((skill) => ({ jobId, skill })),
+        uniqueSkills.map((skill) => ({ jobId, skill })),
       );
     }
   }

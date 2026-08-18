@@ -8,6 +8,7 @@ import { runEmbeddingTick } from "../scheduler/embedding-worker";
 import { arbeitnow } from "../sources/arbeitnow";
 import { remotive } from "../sources/remotive";
 import { remoteok } from "../sources/remoteok";
+import { adzuna } from "../sources/adzuna";
 import { greenhouse } from "../sources/ats/greenhouse";
 import { lever } from "../sources/ats/lever";
 import { ashby } from "../sources/ats/ashby";
@@ -68,6 +69,7 @@ ingestRouter.all("/ingest", async (c) => {
       ["arbeitnow", () => runSource(arbeitnow)],
       ["remotive", () => runSource(remotive)],
       ["remoteok", () => runSource(remoteok)],
+      ["adzuna", () => runSource(adzuna)],
     ] as const;
     for (const [name, run] of simple) {
       const r = await run();

@@ -7,6 +7,7 @@ import { runAtsSource, runSource } from "../ingest/pipeline";
 import { arbeitnow } from "../sources/arbeitnow";
 import { remotive } from "../sources/remotive";
 import { remoteok } from "../sources/remoteok";
+import { adzuna } from "../sources/adzuna";
 import { greenhouse } from "../sources/ats/greenhouse";
 import { lever } from "../sources/ats/lever";
 import { ashby } from "../sources/ats/ashby";
@@ -16,6 +17,7 @@ const simpleAdapters = {
   arbeitnow,
   remotive,
   remoteok,
+  adzuna,
 } satisfies Record<string, SourceAdapter>;
 
 const atsAdapters = {

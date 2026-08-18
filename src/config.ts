@@ -53,6 +53,13 @@ const EnvSchema = z.object({
 
   // Cron schedules per source
   CRON_ARBEITNOW: z.string().default("0 * * * *"), // hourly
+  // Adzuna (https://developer.adzuna.com — free key). Optional: the source
+  // disables itself when credentials are absent. Countries: any Adzuna
+  // market (au, sg, nz, in, …); default covers Australia + Singapore.
+  ADZUNA_APP_ID: z.string().optional(),
+  ADZUNA_APP_KEY: z.string().optional(),
+  ADZUNA_COUNTRIES: z.string().default("au,sg"),
+  CRON_ADZUNA: z.string().default("0 * * * *"),
   CRON_REMOTIVE: z.string().default("30 * * * *"),
   CRON_REMOTEOK: z.string().default("15 */4 * * *"), // every 4h
   CRON_GREENHOUSE: z.string().default("0 */2 * * *"),

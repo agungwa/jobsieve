@@ -34,6 +34,8 @@ jobs:
           EMBEDDING_PROVIDER: cloudflare
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
 
       - name: Embed pending rows
         run: bun run ingest:embedding-worker
@@ -43,6 +45,8 @@ jobs:
           EMBEDDING_PROVIDER: cloudflare
           CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
           CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
 
   # ── CI: typecheck + build on every PR and push ────────────────────────────
   check:

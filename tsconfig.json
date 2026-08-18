@@ -23,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*", "drizzle.config.ts"],
+  "include": ["src/**/*", "drizzle.config.ts", "scripts/vercel-entry.ts"],
   "exclude": ["node_modules", "dist"]
 }
